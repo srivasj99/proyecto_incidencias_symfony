@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email,{"attr":{"class": "form-control"}}) }}
+        {{ form_row(registrationForm.nombre,{"attr":{"class": "form-control"}}) }}
+        {{ form_row(registrationForm.apellidos,{"attr":{"class": "form-control"}}) }}
+        {{ form_row(registrationForm.telefono,{"attr":{"class": "form-control"}}) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Contraseña',"attr":{"class": "form-control"}
+        }) }}
+        {{ form_row(registrationForm.Foto, {
+            label: 'Foto',"attr":{"class": "form-control"}
+        }) }}
+        {{ form_row(registrationForm.agreeTerms, {
+            label: 'Acepto las concidiones'
+        }) }}
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

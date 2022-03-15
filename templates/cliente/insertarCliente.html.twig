@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block body %} 
+    {{ form_start(form_cliente, {"attr":{"class": "foo"}}) }}
+    {{ form_errors(form_cliente) }}
+
+    {{ form_row(form_cliente.nombre, {"id": "nombre_cliente", "label": "Nombre:","attr":{"class": "form-control"}}) }}
+    {{ form_row(form_cliente.apellidos, {"id": "apellidos_cliente","attr":{"class": "form-control"}}) }}
+    {{ form_row(form_cliente.telefono, {"id": "telefono_cliente","attr":{"class": "form-control"}}) }}
+    {{ form_row(form_cliente.direccion, {"id": "direccion_cliente","attr":{"class": "form-control"}}) }}
+    {{ form_row(form_cliente.Insertar, {"id": "boton_insertar_post","attr":{"class": "btn btn-primary"}}) }}
+    {{ form_end(form_cliente) }}
+{% endblock %}

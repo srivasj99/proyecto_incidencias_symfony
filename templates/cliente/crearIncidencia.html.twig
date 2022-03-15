@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{{ form_start(form_incidencia, {"attr":{"class": "foo"}}) }}
+{{ form_errors(form_incidencia) }}
+
+{{ form_row(form_incidencia.titulo, {"id": "titulo_incidencia", "label": "Titulo:", "attr":{"class": "form-control"}}) }}
+{{ form_row(form_incidencia.cliente, {"id": "cliente_incidencia", "label": "Cliente:","attr":{"class": "form-control"}}) }}
+{{ form_row(form_incidencia.insertar, {"id": "boton_insertar_post", "attr":{"class": "btn btn-primary"}}) }}
+{{ form_end(form_incidencia) }}
+{% endblock %}

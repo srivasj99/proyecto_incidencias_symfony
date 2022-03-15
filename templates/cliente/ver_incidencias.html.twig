@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block body %}
+        {% for message in app.flashes('aviso') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="incidencias">
+            <div class="incidencia">
+                {% for i in incidencia %}
+                    <h2>--- Incidencia ---</h2>
+                    <a href="{{ path("ver_incidencia", {id: i.id}) }}" class="btn btn-info"> {{ i.titulo }}</a><br><br>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}

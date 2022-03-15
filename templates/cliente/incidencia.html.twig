@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="incidencias">
+            <div class="incidencia">
+                    <h2>{{ incidencia.titulo }}</h2>
+                    <p>Fecha creacion: {{ incidencia.fechaCreacion | date('d-m-Y') }}</p>
+                    <p>Estado: {{ incidencia.estado }}</p>
+                    <p>Usuario: {{ incidencia.usuario.id }}</p>
+                    <p>Cliente: {{ incidencia.cliente.id }}</p>
+                    <a href="{{ path("editarIncidencia", {id: incidencia.id}) }}" class="btn btn-success">Editar</a>
+                    <a href="{{ path("borrarIncidencia", {id: incidencia.id}) }}" class="btn btn-danger">Borrar</a>
+            </div>
+    </div>
+{% endblock %}

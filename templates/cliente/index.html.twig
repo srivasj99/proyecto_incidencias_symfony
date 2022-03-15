@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% for message in app.flashes('aviso') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="clientes">
+        <div class="cliente">
+            {% for c in cliente %}
+                <h2>--- Cliente ---</h2>
+                <a href="{{ path("ver_cliente", {id: c.id}) }}" class="btn btn-info"> {{ c.nombre }}</a><br><br>
+                <a href="{{ path("borrar_cliente", {id: c.id}) }}" class="btn btn-danger">Borrar</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
