@@ -53,6 +53,7 @@ class ClienteController extends AbstractController {
      * @Route("/cliente/borrar/{id<\d+>}", name="borrar_cliente")
      */
     public function borrar(Cliente $cliente, ManagerRegistry $doctrine): Response {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $em = $doctrine->getManager();
         $em->remove($cliente);
         $em->flush();
@@ -139,19 +140,19 @@ class ClienteController extends AbstractController {
 
         return $this->renderForm('cliente/editarIncidencia.html.twig', ['form_incidencia' => $form]);
     }
-    
+
     /**
      * @Route("/cliente/borrar_incidencia/{id<\d+>}", name="borrarIncidencia")
      */
     public function borrarIncidencia(Request $request, ManagerRegistry $doctrine, Incidencia $incidencia): Response {
-
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $em = $doctrine->getManager();
         $em->remove($incidencia);
         $em->flush();
         $this->addFlash("aviso", "Incidencia borrada");
         return $this->redirectToRoute("cliente");
     }
-    
+
     /**
      * @Route("/incidencias", name="incidencias")
      */
@@ -164,7 +165,7 @@ class ClienteController extends AbstractController {
                     'incidencia' => $incidencia
         ]);
     }
-    
+
     /**
      * @Route("/incidencias/{id<\d+>}", name="ver_incidencia")
      */
@@ -178,7 +179,6 @@ class ClienteController extends AbstractController {
         ]);
     }
 
-    
     /**
      * @Route("/incidencias/crear", name="crear_incidencia")
      */
@@ -186,14 +186,14 @@ class ClienteController extends AbstractController {
         $incidencia = new Incidencia();
         $form = $this->createFormBuilder($incidencia)
                 ->add("titulo", TextType::class)
-                ->add('cliente', EntityType::class,[
-                        'class' => Cliente::class,
-                        'choice_label' => 'nombre'
-                        ])
+                ->add('cliente', EntityType::class, [
+                    'class' => Cliente::class,
+                    'choice_label' => 'nombre'
+                ])
                 ->add('insertar', SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $incidencia = $form->getData();
             $incidencia->setFechaCreacion(new \DateTime());
             $incidencia->setEstado("iniciada");
